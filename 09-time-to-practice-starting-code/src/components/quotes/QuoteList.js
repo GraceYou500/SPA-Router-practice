@@ -6,6 +6,20 @@ import classes from './QuoteList.module.css';
 
 const sortQuotes = (quotes, ascending) => {
   return quotes.sort((quoteA, quoteB) => {
+    // if (ascending) {
+    //   return quoteA.id - quoteB.id;
+    // } else {
+    //   return quoteB.id - quoteA.id;
+    // }
+    // if (quoteA.id > quoteB.id) {
+    //   console.log(quoteA.id, quoteB.id, quoteA.id - quoteB.id, -1);
+    //   return -1;
+    // } else if (quoteA.id < quoteB.id) {
+    //   console.log(quoteA.id, quoteB.id, quoteA.id - quoteB.id, 1);
+    //   return 1;
+    // } else {
+    //   return 0;
+    // }
     if (ascending) {
       return quoteA.id > quoteB.id ? 1 : -1;
     } else {
@@ -17,6 +31,7 @@ const sortQuotes = (quotes, ascending) => {
 const QuoteList = props => {
   const history = useHistory();
   const location = useLocation();
+  console.log(location);
 
   const queryParams = new URLSearchParams(location.search); // return an object for query parameter(search) => {sort: asc}
 
@@ -25,7 +40,9 @@ const QuoteList = props => {
   const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
   const changeSortingHandler = () => {
-    history.push('/quotes?sort=' + (isSortingAscending ? 'desc' : 'asc'));
+    history.push(
+      `${location.pathname}?sort=${isSortingAscending ? 'desc' : 'asc'}`
+    );
   };
 
   return (
@@ -50,3 +67,11 @@ const QuoteList = props => {
 };
 
 export default QuoteList;
+
+// quoteA.id > quoteB.id ? 1 : -1;
+
+// if (A > B) {
+//   return 1;
+// } else {
+//   return -1;
+// }
