@@ -2,7 +2,7 @@ import QuoteForm from '../components/quotes/QuoteForm';
 import { useHistory } from 'react-router-dom';
 
 const NewQuote = () => {
-  const history = useHistory(); // return a history object
+  const history = useHistory(); // return a history object => redirect to history page
 
   const addQuoteHandler = quoteData => {
     console.log(quoteData);
